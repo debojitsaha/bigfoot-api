@@ -15,7 +15,7 @@ const Auth = async (req: Request, res: Response, next: NextFunction) => {
         const decoded = jwt.verify(authToken, String(process.env.JWT_SECRET_KEY)) as UserSchemaDto;
 
         // find the user with the received id & assign to req.body.user.
-        const user = await userService.findUser(decoded._id);
+        const user = await userService.findUser(decoded.id);
         res.locals.user = user;
 
         next();
